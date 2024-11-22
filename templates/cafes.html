@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="px-4 my-5 text-center border-bottom">
+        <h1 class="display-4 fw-bold text-body-emphasis">List of Cafés</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Below you will find a list of cafés.</p>
+        </div>
+        <div class="container px-5" style="max-height: 30vh; overflow: hidden;">
+            <img src="{{ url_for('static', filename='Cup-Of-Creamy-Coffee.png') }}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" style="object-fit: cover;">
+        </div>
+
+    </div>
+
+    <table class="table table-hover" style="z-index: 0;">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col" class="col-id">id</th>
+                <th scope="col" class="col-name">Name</th>
+                <th scope="col" class="col-map-url">Map URL</th>
+                <th scope="col" class="col-image-url">Image URL</th>
+                <th scope="col" class="col-location">Location</th>
+                <th scope="col" class="col-id">Has sockets</th>
+                <th scope="col" class="col-id">Has toilet</th>
+                <th scope="col" class="col-id">Has WiFi</th>
+                <th scope="col" class="col-id">Can take calls</th>
+                <th scope="col" class="col-id">Seats</th>
+                <th scope="col" class="col-id">Coffee price</th>
+                <th scope="col" class="col-id">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cafe in cafes %}
+                <tr>
+                    <th scope="row">{{ cafe.id }}</th>
+                    <td>{{ cafe.name }}</td>
+                    <td><a href="{{ cafe.map_url }}" target="_blank">Map</a></td>
+                    <td><a href="{{ cafe.img_url }}" target="_blank">Image</a></td>
+                    <td>{{ cafe.location }}</td>
+                    <td>{{ cafe.has_sockets }}</td>
+                    <td>{{ cafe.has_toilet }}</td>
+                    <td>{{ cafe.has_wifi }}</td>
+                    <td>{{ cafe.can_take_calls }}</td>
+                    <td>{{ cafe.seats }}</td>
+                    <td>{{ cafe.coffee_price }}</td>
+                    <td><a href="{{ url_for('delete_cafe', id=cafe.id) }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('add_cafe') }}">
+        <button class="btn btn-primary rounded-pill px-3 mb-3" type="button">Add Cafe</button>
+    </a>
+{% endblock %}
+

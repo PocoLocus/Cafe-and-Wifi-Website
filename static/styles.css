@@ -1,0 +1,26 @@
+table {
+    table-layout: fixed;
+    width: 100%; /* Optional: Make the table occupy the full width */
+}
+
+th, td {
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+.col-id {
+    width: 10%;
+}
+
+.col-name {
+    width: 20%;
+}
+
+.col-map-url,
+.col-image-url {
+    width: 10%;
+}
+
+.col-location {
+    width: 12%;
+}
