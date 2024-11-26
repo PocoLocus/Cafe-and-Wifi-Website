@@ -45,6 +45,9 @@ class AddForm(FlaskForm):
     coffee_price = StringField("Coffee price (eg: £2.75)", validators=[InputRequired()])
     submit = SubmitField('Submit')
 
+with app.app_context():
+    db.create_all()
+
 @app.route('/')
 def show_cafes():
     cafes = db.session.execute(db.select(Cafe)).scalars().all()
@@ -81,6 +84,4 @@ def delete_cafe():
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run()
