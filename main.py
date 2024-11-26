@@ -15,8 +15,7 @@ db = SQLAlchemy()
 
 bootstrap = Bootstrap5(app)
 
-db_name = 'cafes.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URI', 'sqlite:///cafes.db')
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 db.init_app(app)
 
@@ -84,4 +83,4 @@ def delete_cafe():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run()
